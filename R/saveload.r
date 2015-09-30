@@ -12,7 +12,7 @@
 #' @return If successful, \code{NULL}, else the contents of the API error.
 #' 
 #' @keywords bucket, object
-#' @seealso \code{\link{postobject}}, \code{\link{s3load}}
+#' @seealso \code{\link{putobject}}, \code{\link{s3load}}
 #' @examples \dontrun{}
 #' @export
 

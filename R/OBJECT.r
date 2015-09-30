@@ -282,7 +282,7 @@ copyobject <- function(from_object, to_object = from_object, from_bucket, to_buc
         to_object <- to_object$Key
     r <- s3HTTP(verb = "PUT", 
                 bucket = to_bucket,
-                path = paste0("/", object),
+                path = paste0("/", to_object),
                 headers = c(headers, 
                             `x-amz-copy-source` = paste0("/",from_bucket,"/",from_object)), 
                 ...)

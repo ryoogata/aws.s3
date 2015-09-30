@@ -127,21 +127,21 @@ s3HTTP <- function(verb = "GET",
     } else {
       out <- r
     }
-  out
+    out
 }
 
 
 ## This internal routine is a bit crude, the logic should really be cleaned up to make sure we cover all cases with a sensible decision tree
 
 parse_aws_s3_response <- function(r, Sig, verbose = getOption("verbose")){
-  ## Some objects have nothing to parse
-  if(is.null(r$headers$`content-type`)){
-    if(verbose){
+
+  if (is.null(r$headers$`content-type`)){
+    if (verbose){
       warning("Response has no body, nothing to parse")
     }
     out <- NULL
   } else {
-    if(r$headers$`content-type` == "application/xml"){
+    if (r$headers$`content-type` == "application/xml"){
       response_contents <- try(httr::content(r, "parsed"), silent = TRUE)
       if (!inherits(response_contents, "try-error")) {
         if (!is.null(response_contents)) {
@@ -156,7 +156,7 @@ parse_aws_s3_response <- function(r, Sig, verbose = getOption("verbose")){
     } else {
       response <- r
     }
-    #raise errors if bad values are passed. 
+     
     if (httr::http_status(r)$category == "client error") {
       httr::warn_for_status(r)
       h <- httr::headers(r)
@@ -169,6 +169,9 @@ parse_aws_s3_response <- function(r, Sig, verbose = getOption("verbose")){
       attr(out, "request_canonical") <- Sig$CanonicalRequest
       attr(out, "request_string_to_sign") <- Sig$StringToSign
       attr(out, "request_signature") <- Sig$SignatureHeader
+      
+      # stop()
+      
     }
   }
   out
