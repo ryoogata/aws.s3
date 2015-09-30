@@ -25,8 +25,14 @@ buckets available to the authenticated user. In this way, it can serve as
 a \dQuote{hello world!} function, to confirm that one's authentication
 credentials are working correctly.
 }
+\examples{
+\dontrun{}
+}
 \references{
 \href{http://docs.aws.amazon.com/AmazonS3/latest/API/RESTServiceGET.html}{API Documentation}
+}
+\seealso{
+\code{\link{getbucket}}
 }
 \keyword{service}
 

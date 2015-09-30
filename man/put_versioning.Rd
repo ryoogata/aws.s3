@@ -21,7 +21,11 @@ Otherwise, the status is returned (either \dQuote{Enabled} or \dQuote{Suspended}
 \description{
 Set the versioning status of a bucket.
 }
+\examples{
+\dontrun{}
+}
 \references{
 \href{http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTVersioningStatus.html}{API Documentation}
 }
+\keyword{bucket}
 

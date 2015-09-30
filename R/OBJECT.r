@@ -7,6 +7,8 @@
 #'
 #' @return A raw object.
 #' @references \href{http://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGET.html}{API Documentation}
+#' @keywords object
+#' @examples \dontrun{}
 #' @export
 # FIXME consider saving the object to a file?  
 getobject <- function(bucket, object, headers = list(), ...) {
@@ -69,6 +71,8 @@ get_acl <- function(bucket, object, ...) {
 #'
 #' @return Something.
 #' @references \href{http://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGETtorrent.html}{API Documentation}
+#' @keywords object
+#' @examples \dontrun{}
 #' @export
 
 get_torrent <- function(bucket, object, ...) {
@@ -156,6 +160,8 @@ postobject <- function(bucket, object, ...) {
 #'
 #' @return If successful, \code{TRUE}, otherwise an aws_error object.
 #' @references \href{http://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPUT.html}{API Documentation}
+#' @keywords object
+#' @examples \dontrun{}
 #' @export
 
 putobject <- function(file, bucket, object, headers = list(), ...) {
@@ -216,6 +222,8 @@ putobject_acl <- function(bucket, object, ...) {
 #'
 #' @return Something...
 #' @references \href{http://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectCOPY.html}{API Documentation}
+#' @keywords object
+#' @examples \dontrun{}
 #' @export
 
 copyobject <- function(from_object, to_object = from_object, from_bucket, to_bucket, headers = list(), ...) {
@@ -247,6 +255,8 @@ copyobject <- function(from_object, to_object = from_object, from_bucket, to_buc
 #'
 #' @return TRUE if successful, aws_error details if not.
 #' @references \href{http://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectDELETE.html}{API Documentation}
+#' @keywords object
+#' @examples \dontrun{}
 #' @export
 deleteobject <- function(bucket, object, ...) {
     if (inherits(object, "s3_object"))

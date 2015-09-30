@@ -17,7 +17,11 @@ A list with lifecycle configuration, if it has been configured.
 \description{
 Get the lifecycle configuration information for a bucket.
 }
+\examples{
+\dontrun{}
+}
 \references{
 \href{http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETlifecycle.html}{API Documentation}
 }
+\keyword{bucket}
 

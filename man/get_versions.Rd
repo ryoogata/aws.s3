@@ -17,7 +17,11 @@ A list.
 \description{
 Get versions of bucket objects.
 }
+\examples{
+\dontrun{}
+}
 \references{
 \href{http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETVersion.html}{API Documentation}
 }
+\keyword{bucket}
 

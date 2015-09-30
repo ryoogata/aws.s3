@@ -26,7 +26,11 @@ Something...
 \description{
 Copy an object into another S3 bucket
 }
+\examples{
+\dontrun{}
+}
 \references{
 \href{http://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectCOPY.html}{API Documentation}
 }
+\keyword{object}
 

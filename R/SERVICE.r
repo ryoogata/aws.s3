@@ -16,9 +16,9 @@
 #' sender.
 #' 
 #' @references \href{http://docs.aws.amazon.com/AmazonS3/latest/API/RESTServiceGET.html}{API Documentation}
-#' 
 #' @keywords service
-#' 
+#' @seealso \code{\link{getbucket}}
+#' @examples \dontrun{}
 #' @export
 
 bucketlist <- function(...) {

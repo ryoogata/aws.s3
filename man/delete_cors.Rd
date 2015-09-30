@@ -17,7 +17,11 @@ delete_cors(bucket, ...)
 \description{
 Delete the cross origin resource sharing configuration information for a bucket.
 }
+\examples{
+\dontrun{}
+}
 \references{
 \href{http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketDELETEcors.html}{API Documentation}
 }
+\keyword{bucket}
 

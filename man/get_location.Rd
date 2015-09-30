@@ -17,7 +17,11 @@ A character string containing the region, if one has been set.
 \description{
 Get the AWS region location of bucket.
 }
+\examples{
+\dontrun{}
+}
 \references{
 \href{http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETlocation.html}{API Documentation}
 }
+\keyword{bucket}
 

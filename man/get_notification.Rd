@@ -17,7 +17,11 @@ A list containing the notification configuration, if one has been set.
 \description{
 Get the notification configuration for a bucket.
 }
+\examples{
+\dontrun{}
+}
 \references{
 \href{http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETnotification.html}{API Documentation}
 }
+\keyword{bucket}
 

@@ -18,6 +18,8 @@
 #' complete contents of the AWS response.
 #'
 #' @references \href{https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGET.html}{API Documentation}
+#' @keywords bucket
+#' @examples \dontrun{}
 #' @export
 
 getbucket <- function(bucket, 
@@ -76,6 +78,8 @@ get_acl <- function(bucket, ...){
 #'
 #' @return A list with cors configuration and rules.
 #' @references \href{http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETcors.html}{API Documentation}
+#' @keywords bucket
+#' @examples \dontrun{}
 #' @export
 
 get_cors <- function(bucket, ...){
@@ -100,6 +104,8 @@ get_cors <- function(bucket, ...){
 #'
 #' @return A list with lifecycle configuration, if it has been configured.
 #' @references \href{http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETlifecycle.html}{API Documentation}
+#' @keywords bucket
+#' @examples \dontrun{}
 #' @export
 
 get_lifecycle <- function(bucket, ...){
@@ -124,6 +130,8 @@ get_lifecycle <- function(bucket, ...){
 #'
 #' @return A list with a policy, if one has been set.
 #' @references \href{http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETpolicy.html}{API Documentation}
+#' @keywords bucket
+#' @examples \dontrun{}
 #' @export
 
 get_policy <- function(bucket, ...){
@@ -147,6 +155,8 @@ get_policy <- function(bucket, ...){
 #'
 #' @return A character string containing the region, if one has been set.
 #' @references \href{http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETlocation.html}{API Documentation}
+#' @keywords bucket
+#' @examples \dontrun{}
 #' @export
 
 get_location <- function(bucket, ...){
@@ -185,6 +195,8 @@ get_logging <- function(bucket, ...){
 #'
 #' @return A list containing the notification configuration, if one has been set.
 #' @references \href{http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETnotification.html}{API Documentation}
+#' @keywords bucket
+#' @examples \dontrun{}
 #' @export
 
 get_notification <- function(bucket, ...){
@@ -209,6 +221,8 @@ get_notification <- function(bucket, ...){
 #'
 #' @return A list containing the replication configuration, if one has been set.
 #' @references \href{http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETreplication.html}{API Documentation}
+#' @keywords bucket
+#' @examples \dontrun{}
 #' @export
 
 get_replication <- function(bucket, ...){
@@ -233,6 +247,8 @@ get_replication <- function(bucket, ...){
 #'
 #' @return A list containing the tag set, if one has been set.
 #' @references \href{http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETtagging.html}{API Documentation}
+#' @keywords bucket
+#' @examples \dontrun{}
 #' @export
 
 get_tagging <- function(bucket, ...){
@@ -257,6 +273,8 @@ get_tagging <- function(bucket, ...){
 #'
 #' @return A list.
 #' @references \href{http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETVersion.html}{API Documentation}
+#' @keywords bucket
+#' @examples \dontrun{}
 #' @export
 
 get_versions <- function(bucket, ...){
@@ -281,6 +299,8 @@ get_versions <- function(bucket, ...){
 #' @return If versioning has never been enabled or suspend, the value is \code{NULL}.
 #' Otherwise, the status is returned (either \dQuote{Enabled} or \dQuote{Suspended}).
 #' @references \href{http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETversioningStatus.html}{API Documentation}
+#' @keywords bucket
+#' @examples \dontrun{}
 #' @export
 
 get_versioning <- function(bucket, ...){
@@ -309,6 +329,8 @@ get_versioning <- function(bucket, ...){
 #'
 #' @return A list containing the website configuration, if one has been set.
 #' @references \href{http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETwebsite.html}{API Documentation}
+#' @keywords bucket
+#' @examples \dontrun{}
 #' @export
 
 get_website <- function(bucket, ...){
@@ -332,6 +354,8 @@ get_website <- function(bucket, ...){
 #'
 #' @return A list containing the multipart upload information.
 #' @references \href{http://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadListMPUpload.html}{API Documentation}
+#' @keywords bucket
+#' @examples \dontrun{}
 #' @export
 
 get_uploads <- function(bucket, ...){
@@ -355,6 +379,8 @@ get_uploads <- function(bucket, ...){
 #'
 #' @return A list containing the requestPayment information, if set.
 #' @references \href{http://docs.aws.amazon.com/AmazonS3/latest/API/RESTrequestPaymentGET.html}{API Documentation}
+#' @keywords bucket
+#' @examples \dontrun{}
 #' @export
 
 get_requestpayment <- function(bucket, ...){
@@ -380,6 +406,8 @@ get_requestpayment <- function(bucket, ...){
 #' @return \code{TRUE} if successful, \code{FALSE} otherwise. 
 #' An \code{aws_error} object may be returned if the request failed.
 #' @references \href{http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketDELETE.html}{API Documentation}
+#' @keywords bucket
+#' @examples \dontrun{}
 #' @export
 
 deletebucket <- function(bucket, ...){
@@ -403,6 +431,8 @@ deletebucket <- function(bucket, ...){
 #'
 #' @return \code{TRUE} if successful, \code{FALSE} otherwise.
 #' @references \href{http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketDELETEcors.html}{API Documentation}
+#' @keywords bucket
+#' @examples \dontrun{}
 #' @export
 
 delete_cors <- function(bucket, ...){
@@ -429,6 +459,8 @@ delete_cors <- function(bucket, ...){
 #' @return \code{TRUE} if successful, \code{FALSE} otherwise.
 #' An \code{aws_error} object may be returned if the request failed.
 #' @references \href{http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketDELETElifecycle.html}{API Documentation}
+#' @keywords bucket
+#' @examples \dontrun{}
 #' @export
 
 delete_lifecycle <- function(bucket, ...){
@@ -455,6 +487,8 @@ delete_lifecycle <- function(bucket, ...){
 #' @return \code{TRUE} if successful, \code{FALSE} otherwise.
 #' An \code{aws_error} object may be returned if the request failed.
 #' @references \href{http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketDELETEpolicy.html}{API Documentation}
+#' @keywords bucket
+#' @examples \dontrun{}
 #' @export
 
 delete_policy <- function(bucket, ...){
@@ -480,6 +514,8 @@ delete_policy <- function(bucket, ...){
 #' @return \code{TRUE} if successful, \code{FALSE} otherwise.
 #' An \code{aws_error} object may be returned if the request failed.
 #' @references \href{http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketDELETEreplication.html}{API Documentation}
+#' @keywords bucket
+#' @examples \dontrun{}
 #' @export
 
 delete_replication <- function(bucket, ...){
@@ -505,6 +541,8 @@ delete_replication <- function(bucket, ...){
 #' @return \code{TRUE} if successful, \code{FALSE} otherwise.
 #' An \code{aws_error} object may be returned if the request failed.
 #' @references \href{http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketDELETEtagging.html}{API Documentation}
+#' @keywords bucket
+#' @examples \dontrun{}
 #' @export
 
 delete_tagging <- function(bucket, ...){
@@ -531,6 +569,8 @@ delete_tagging <- function(bucket, ...){
 #' @return \code{TRUE} if successful, \code{FALSE} otherwise.
 #' An \code{aws_error} object may be returned if the request failed.
 #' @references \href{http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketDELETEwebsite.html}{API Documentation}
+#' @keywords bucket
+#' @examples \dontrun{}
 #' @export
 
 delete_website <- function(bucket, ...){
@@ -557,6 +597,8 @@ delete_website <- function(bucket, ...){
 #' @return \code{TRUE} if bucket exists and is accessible, else \code{FALSE}.
 #' An \code{aws_error} object may be returned if the request failed.
 #' @references \href{http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketHEAD.html}{API Documentation}
+#' @keywords bucket
+#' @examples \dontrun{}
 #' @export
 
 bucketexists <- function(bucket, ...){
@@ -580,6 +622,8 @@ bucketexists <- function(bucket, ...){
 #'
 #' @return \code{TRUE} if successful, aws_error details if not.
 #' @references \href{http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUT.html}{API Documentation}
+#' @keywords bucket
+#' @examples \dontrun{}
 #' @export
 
 putbucket <- function(bucket, ...){
@@ -692,6 +736,8 @@ put_tagging <- function(bucket, ...){
 #' @return If versioning has never been enabled or suspend, the value is \code{NULL}.
 #' Otherwise, the status is returned (either \dQuote{Enabled} or \dQuote{Suspended}).
 #' @references \href{http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTVersioningStatus.html}{API Documentation}
+#' @keywords bucket
+#' @examples \dontrun{}
 #' @export
 
 put_versioning <- function(bucket, status = c("Enabled", "Suspended"), ...){

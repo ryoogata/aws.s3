@@ -18,7 +18,11 @@ An \code{aws_error} object may be returned if the request failed.
 \description{
 Deletes an S3 bucket.
 }
+\examples{
+\dontrun{}
+}
 \references{
 \href{http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketDELETE.html}{API Documentation}
 }
+\keyword{bucket}
 

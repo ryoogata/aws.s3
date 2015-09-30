@@ -21,7 +21,11 @@ A raw object.
 \description{
 Retrieves an object from an S3 bucket
 }
+\examples{
+\dontrun{}
+}
 \references{
 \href{http://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGET.html}{API Documentation}
 }
+\keyword{object}
 

@@ -20,7 +20,11 @@ TRUE if successful, aws_error details if not.
 \description{
 Deletes an object from an S3 bucket.
 }
+\examples{
+\dontrun{}
+}
 \references{
 \href{http://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectDELETE.html}{API Documentation}
 }
+\keyword{object}
 

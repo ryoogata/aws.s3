@@ -34,7 +34,11 @@ from the AWS doc: "This implementation of the GET operation returns some
  or all (up to 1000) of the objects in a bucket. You can use the request parameters
  as selection criteria to return a subset of the objects in a bucket."
 }
+\examples{
+\dontrun{}
+}
 \references{
 \href{https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGET.html}{API Documentation}
 }
+\keyword{bucket}
 

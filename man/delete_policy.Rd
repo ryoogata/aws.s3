@@ -18,7 +18,11 @@ An \code{aws_error} object may be returned if the request failed.
 \description{
 Delete the bucket access policy for a bucket.
 }
+\examples{
+\dontrun{}
+}
 \references{
 \href{http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketDELETEpolicy.html}{API Documentation}
 }
+\keyword{bucket}
 

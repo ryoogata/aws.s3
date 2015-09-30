@@ -17,7 +17,11 @@ A list with cors configuration and rules.
 \description{
 Get the cross origin resource sharing configuration information for a bucket.
 }
+\examples{
+\dontrun{}
+}
 \references{
 \href{http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETcors.html}{API Documentation}
 }
+\keyword{bucket}
 

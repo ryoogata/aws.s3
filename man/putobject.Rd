@@ -26,7 +26,11 @@ If successful, \code{TRUE}, otherwise an aws_error object.
 \description{
 Puts an object into an S3 bucket
 }
+\examples{
+\dontrun{}
+}
 \references{
 \href{http://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPUT.html}{API Documentation}
 }
+\keyword{object}
 

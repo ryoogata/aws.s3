@@ -14,6 +14,7 @@
 #' 
 #' @keywords bucket, object
 #' @seealso \code{\link{postobject}}, \code{\link{s3load}}
+#' @examples \dontrun{}
 #' @export
 
 s3save <- function(..., bucket, object, opts = list()) {
@@ -44,6 +45,7 @@ s3save <- function(..., bucket, object, opts = list()) {
 #' 
 #' @keywords bucket, object
 #' @seealso \code{\link{getobject}}, \code{\link{s3save}}
+#' @examples \dontrun{}
 #' @export
 
 s3load <- function(bucket, object, opts, envir = parent.frame()) {
