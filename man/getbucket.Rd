@@ -8,7 +8,7 @@ getbucket(bucket, prefix = NULL, delimiter = NULL, max = NULL,
   marker = NULL, parse_response = TRUE, ...)
 }
 \arguments{
-\item{bucket}{Character string with the name of the bucket.}
+\item{bucket}{A character string containing the name of the bucket, or an object of class \dQuote{s3_bucket}.}
 
 \item{prefix}{Character string that limits the response to keys that begin
 with the specified prefix}

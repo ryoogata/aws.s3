@@ -7,7 +7,7 @@
 put_versioning(bucket, status = c("Enabled", "Suspended"), ...)
 }
 \arguments{
-\item{bucket}{Character string with the name of the bucket.}
+\item{bucket}{A character string containing the name of the bucket, or an object of class \dQuote{s3_bucket}.}
 
 \item{status}{Character string specifying whether versioning should be
 \dQuote{Enabled} or \dQuote{Suspended}.}

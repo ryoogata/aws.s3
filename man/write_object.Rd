@@ -7,9 +7,9 @@
 write_object(bucket, object, con, headers = list(), ...)
 }
 \arguments{
-\item{bucket}{Character string with the name of the bucket.}
+\item{bucket}{A character string containing the name of the bucket, or an object of class \dQuote{s3_bucket}.}
 
-\item{object}{Character string of the name of the object you want to get.}
+\item{object}{A character string containing the name of an object, or an object of class \dQuote{s3_object}.}
 
 \item{con}{An R connection (e.g., a character string specifying a file path).}
 

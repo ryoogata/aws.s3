@@ -1,7 +1,7 @@
 #' @title Retrieves an object from an S3 bucket
 #' 
-#' @param bucket Character string with the name of the bucket.
-#' @param object Character string of the name of the object you want to get.
+#' @param bucket A character string containing the name of the bucket, or an object of class \dQuote{s3_bucket}.
+#' @param object A character string containing the name of an object, or an object of class \dQuote{s3_object}.
 #' @param headers List of request headers for the REST call.
 #' @param ... Additional arguments passed to \code{\link{s3HTTP}}.
 #'
@@ -11,6 +11,8 @@
 #' @examples \dontrun{}
 #' @export
 getobject <- function(bucket, object, headers = list(), ...) {
+    if (inherits(bucket, "s3_bucket"))
+        bucket <- bucket$Name
     if (inherits(object, "s3_object"))
         object <- object$Key
 
@@ -43,8 +45,8 @@ print.s3_object <- function(x, ...){
 #' in addition to returning the object as a raw vector within R, this function
 #' writes the object to a connection, as specified by the \code{con} argument.
 #'
-#' @param bucket Character string with the name of the bucket.
-#' @param object Character string of the name of the object you want to get.
+#' @param bucket A character string containing the name of the bucket, or an object of class \dQuote{s3_bucket}.
+#' @param object A character string containing the name of an object, or an object of class \dQuote{s3_object}.
 #' @param con An R connection (e.g., a character string specifying a file path).
 #' @param headers List of request headers for the REST call.
 #' @param ... Additional arguments passed to \code{\link{s3HTTP}}.
@@ -54,6 +56,8 @@ print.s3_object <- function(x, ...){
 #' @examples \dontrun{}
 #' @export
 write_object <- function(bucket, object, con, headers = list(), ...) {
+    if (inherits(bucket, "s3_bucket"))
+        bucket <- bucket$Name
     if (inherits(object, "s3_object"))
         object <- object$Key
 
@@ -67,6 +71,8 @@ write_object <- function(bucket, object, con, headers = list(), ...) {
 }
 
 get_acl <- function(bucket, object, ...) {
+    if (inherits(bucket, "s3_bucket"))
+        bucket <- bucket$Name
     if (missing(object)) {
         r <- s3HTTP(verb = "GET", 
                     bucket = bucket,
@@ -94,8 +100,8 @@ get_acl <- function(bucket, object, ...) {
 
 #' @title Retrieves a Bencoded dictionary (BitTorrent) for an object from an S3 bucket.
 #' 
-#' @param bucket Character string with the name of the bucket.
-#' @param object Character string of the name of the object you want to get.
+#' @param bucket A character string containing the name of the bucket, or an object of class \dQuote{s3_bucket}.
+#' @param object A character string containing the name of an object, or an object of class \dQuote{s3_object}.
 #' @param ... additional arguments passed to \code{\link{s3HTTP}}.
 #'
 #' @return Something.
@@ -105,6 +111,8 @@ get_acl <- function(bucket, object, ...) {
 #' @export
 
 get_torrent <- function(bucket, object, ...) {
+    if (inherits(bucket, "s3_bucket"))
+        bucket <- bucket$Name
     if (inherits(object, "s3_object"))
         object <- object$Key
 
@@ -123,6 +131,8 @@ get_torrent <- function(bucket, object, ...) {
 # HEAD
 
 headobject <- function(bucket, object, ...) {
+    if (inherits(bucket, "s3_bucket"))
+        bucket <- bucket$Name
     if (inherits(object, "s3_object"))
         object <- object$Key
 
@@ -141,6 +151,8 @@ headobject <- function(bucket, object, ...) {
 # OPTIONS
 
 optsobject <- function(bucket, object, ...) {
+    if (inherits(bucket, "s3_bucket"))
+        bucket <- bucket$Name
     if (inherits(object, "s3_object"))
         object <- object$Key
 
@@ -159,6 +171,8 @@ optsobject <- function(bucket, object, ...) {
 # POST
 
 postobject <- function(bucket, object, ...) {
+    if (inherits(bucket, "s3_bucket"))
+        bucket <- bucket$Name
     if (inherits(object, "s3_object"))
         object <- object$Key
 
@@ -180,9 +194,8 @@ postobject <- function(bucket, object, ...) {
 #'
 #' @param file A character string containing the filename (or full path) of 
 #' the file you want to upload to S3.
-#' @param bucket A character string containing the name of the bucket you want 
-#' to put an object into.
-#' @param object A character string containing the name the object should 
+#' @param bucket A character string containing the name of the bucket, or an object of class \dQuote{s3_bucket}.
+#' @param object A character string containing the name of an object, or an object of class \dQuote{s3_object}.
 #' have in S3 (i.e., its "object key"). If missing, the filename is used.
 #' @param headers List of request headers for the REST call.   
 #' @param ... additional arguments passed to \code{\link{s3HTTP}}
@@ -194,6 +207,8 @@ postobject <- function(bucket, object, ...) {
 #' @export
 
 putobject <- function(file, bucket, object, headers = list(), ...) {
+    if (inherits(bucket, "s3_bucket"))
+        bucket <- bucket$Name
     if (!missing(object) && inherits(object, "s3_object"))
         object <- object$Key
     if (missing(object)) {
@@ -214,7 +229,8 @@ putobject <- function(file, bucket, object, headers = list(), ...) {
 }
 
 putobject_acl <- function(bucket, object, ...) {
-
+    if (inherits(bucket, "s3_bucket"))
+        bucket <- bucket$Name
     if (missing(object)) {
         r <- s3HTTP(verb = "PUT", 
                     bucket = bucket,
@@ -242,10 +258,10 @@ putobject_acl <- function(bucket, object, ...) {
 
 #' @title Copy an object into another S3 bucket
 #'
-#' @param from_bucket A character string containing the name of the bucket you want to copy from.
-#' @param to_bucket A character string containing the name of the bucket you want to copy into.
-#' @param from_object A character string containing the name the object you want to copy.
-#' @param to_object A character string containing the name the object should have in the new bucket.
+#' @param from_bucket A character string containing the name of the bucket, or an object of class \dQuote{s3_bucket}, which you want to copy from.
+#' @param to_bucket A character string containing the name of the bucket, or an object of class \dQuote{s3_bucket}, which you want to copy into.
+#' @param from_object A character string containing the name of an object, or an object of class \dQuote{s3_object}, which you want to copy.
+#' @param to_object A character string containing the name of an object, or an object of class \dQuote{s3_object}, which specifies the name the object should have in the new bucket. By default, the object key for the original object is used.
 #' @param headers List of request headers for the REST call.   
 #' @param ... additional arguments passed to \code{\link{s3HTTP}}
 #'
@@ -256,9 +272,14 @@ putobject_acl <- function(bucket, object, ...) {
 #' @export
 
 copyobject <- function(from_object, to_object = from_object, from_bucket, to_bucket, headers = list(), ...) {
-    if (inherits(object, "s3_object"))
-        object <- object$Key
-
+    if (inherits(from_bucket, "s3_bucket"))
+        from_bucket <- from_bucket$Name
+    if (inherits(to_bucket, "s3_bucket"))
+        to_bucket <- to_bucket$Name
+    if (inherits(from_object, "s3_object"))
+        from_object <- from_object$Key
+    if (inherits(to_object, "s3_object"))
+        to_object <- to_object$Key
     r <- s3HTTP(verb = "PUT", 
                 bucket = to_bucket,
                 path = paste0("/", object),
@@ -277,9 +298,8 @@ copyobject <- function(from_object, to_object = from_object, from_bucket, to_buc
 
 #' @title Deletes an object from an S3 bucket.
 #'
-#' @param bucket A character string containing the name of the bucket you want 
-#' to delete an object from.
-#' @param object A character string containing the name of the object.
+#' @param bucket A character string containing the name of the bucket, or an object of class \dQuote{s3_bucket}.
+#' @param object A character string containing the name of an object, or an object of class \dQuote{s3_object}.
 #' @param ... Additional arguments passed to \code{\link{s3HTTP}}
 #'
 #' @return TRUE if successful, aws_error details if not.
@@ -288,6 +308,8 @@ copyobject <- function(from_object, to_object = from_object, from_bucket, to_buc
 #' @examples \dontrun{}
 #' @export
 deleteobject <- function(bucket, object, ...) {
+    if (inherits(bucket, "s3_bucket"))
+        bucket <- bucket$Name
     if (inherits(object, "s3_object"))
         object <- object$Key
 

@@ -38,7 +38,6 @@ s3HTTP <- function(verb = "GET",
                    secret = Sys.getenv("AWS_SECRET_ACCESS_KEY"), 
                    parse_response = TRUE, 
                    ...) {
-    ## let users pass bucket objects as well as bucket names
     if (inherits(bucket, "s3_bucket")){
       bucket <- bucket$Name
     }

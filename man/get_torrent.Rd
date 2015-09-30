@@ -7,9 +7,9 @@
 get_torrent(bucket, object, ...)
 }
 \arguments{
-\item{bucket}{Character string with the name of the bucket.}
+\item{bucket}{A character string containing the name of the bucket, or an object of class \dQuote{s3_bucket}.}
 
-\item{object}{Character string of the name of the object you want to get.}
+\item{object}{A character string containing the name of an object, or an object of class \dQuote{s3_object}.}
 
 \item{...}{additional arguments passed to \code{\link{s3HTTP}}.}
 }

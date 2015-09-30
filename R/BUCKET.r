@@ -3,7 +3,7 @@
 #'  or all (up to 1000) of the objects in a bucket. You can use the request parameters 
 #'  as selection criteria to return a subset of the objects in a bucket."
 #' 
-#' @param bucket Character string with the name of the bucket.
+#' @param bucket A character string containing the name of the bucket, or an object of class \dQuote{s3_bucket}.
 #' @param prefix Character string that limits the response to keys that begin 
 #' with the specified prefix
 #' @param delimiter Character string used to group keys.  Read the AWS doc for more detail.
@@ -30,7 +30,8 @@ getbucket <- function(bucket,
                       parse_response = TRUE,
                       ...){
     
-   
+    if (inherits(bucket, "s3_bucket"))
+        bucket <- bucket$Name
     query = list(prefix = prefix, delimiter = delimiter, "max-keys" = max, marker = marker)
     r <- s3HTTP(verb = "GET", bucket = bucket, query = query, parse_response = parse_response, ...)
 
@@ -56,7 +57,7 @@ print.s3_bucket <- function(x, ...){
 
 
 get_acl <- function(bucket, ...){
-    if (inherits(bucket, "s3bucket"))
+    if (inherits(bucket, "s3_bucket"))
         bucket <- bucket$Name
     r <- s3HTTP(verb = "GET", 
                 bucket = bucket,
@@ -73,7 +74,7 @@ get_acl <- function(bucket, ...){
 
 #' @title Get the cross origin resource sharing configuration information for a bucket.
 #'
-#' @param bucket Character string with the name of the bucket.
+#' @param bucket A character string containing the name of the bucket, or an object of class \dQuote{s3_bucket}.
 #' @param ... Additional arguments passed to \code{\link{s3HTTP}}.
 #'
 #' @return A list with cors configuration and rules.
@@ -83,7 +84,7 @@ get_acl <- function(bucket, ...){
 #' @export
 
 get_cors <- function(bucket, ...){
-    if (inherits(bucket, "s3bucket"))
+    if (inherits(bucket, "s3_bucket"))
         bucket <- bucket$Name
     r <- s3HTTP(verb = "GET", 
                 bucket = bucket,
@@ -99,7 +100,7 @@ get_cors <- function(bucket, ...){
 
 #' @title Get the lifecycle configuration information for a bucket.
 #'
-#' @param bucket Character string with the name of the bucket.
+#' @param bucket A character string containing the name of the bucket, or an object of class \dQuote{s3_bucket}.
 #' @param ... Additional arguments passed to \code{\link{s3HTTP}}.
 #'
 #' @return A list with lifecycle configuration, if it has been configured.
@@ -109,7 +110,7 @@ get_cors <- function(bucket, ...){
 #' @export
 
 get_lifecycle <- function(bucket, ...){
-    if (inherits(bucket, "s3bucket"))
+    if (inherits(bucket, "s3_bucket"))
         bucket <- bucket$Name
     r <- s3HTTP(verb = "GET", 
                 bucket = bucket,
@@ -125,7 +126,7 @@ get_lifecycle <- function(bucket, ...){
 
 #' @title Get the bucket access policy for a bucket.
 #'
-#' @param bucket Character string with the name of the bucket.
+#' @param bucket A character string containing the name of the bucket, or an object of class \dQuote{s3_bucket}.
 #' @param ... Additional arguments passed to \code{\link{s3HTTP}}.
 #'
 #' @return A list with a policy, if one has been set.
@@ -135,7 +136,7 @@ get_lifecycle <- function(bucket, ...){
 #' @export
 
 get_policy <- function(bucket, ...){
-    if (inherits(bucket, "s3bucket"))
+    if (inherits(bucket, "s3_bucket"))
         bucket <- bucket$Name
     r <- s3HTTP(verb = "GET", 
                 bucket = bucket,
@@ -150,7 +151,7 @@ get_policy <- function(bucket, ...){
 
 #' @title Get the AWS region location of bucket.
 #'
-#' @param bucket Character string with the name of the bucket.
+#' @param bucket A character string containing the name of the bucket, or an object of class \dQuote{s3_bucket}.
 #' @param ... Additional arguments passed to \code{\link{s3HTTP}}.
 #'
 #' @return A character string containing the region, if one has been set.
@@ -160,7 +161,7 @@ get_policy <- function(bucket, ...){
 #' @export
 
 get_location <- function(bucket, ...){
-    if (inherits(bucket, "s3bucket"))
+    if (inherits(bucket, "s3_bucket"))
         bucket <- bucket$Name
     r <- s3HTTP(verb = "GET", 
                 bucket = bucket,
@@ -174,7 +175,7 @@ get_location <- function(bucket, ...){
 }
 
 get_logging <- function(bucket, ...){
-    if (inherits(bucket, "s3bucket"))
+    if (inherits(bucket, "s3_bucket"))
         bucket <- bucket$Name
     r <- s3HTTP(verb = "GET", 
                 bucket = bucket,
@@ -190,7 +191,7 @@ get_logging <- function(bucket, ...){
 
 #' @title Get the notification configuration for a bucket.
 #'
-#' @param bucket Character string with the name of the bucket.
+#' @param bucket A character string containing the name of the bucket, or an object of class \dQuote{s3_bucket}.
 #' @param ... Additional arguments passed to \code{\link{s3HTTP}}.
 #'
 #' @return A list containing the notification configuration, if one has been set.
@@ -200,7 +201,7 @@ get_logging <- function(bucket, ...){
 #' @export
 
 get_notification <- function(bucket, ...){
-    if (inherits(bucket, "s3bucket"))
+    if (inherits(bucket, "s3_bucket"))
         bucket <- bucket$Name
     r <- s3HTTP(verb = "GET", 
                 bucket = bucket,
@@ -216,7 +217,7 @@ get_notification <- function(bucket, ...){
 
 #' @title Get the replication configuration for a bucket.
 #'
-#' @param bucket Character string with the name of the bucket.
+#' @param bucket A character string containing the name of the bucket, or an object of class \dQuote{s3_bucket}.
 #' @param ... Additional arguments passed to \code{\link{s3HTTP}}.
 #'
 #' @return A list containing the replication configuration, if one has been set.
@@ -226,7 +227,7 @@ get_notification <- function(bucket, ...){
 #' @export
 
 get_replication <- function(bucket, ...){
-    if (inherits(bucket, "s3bucket"))
+    if (inherits(bucket, "s3_bucket"))
         bucket <- bucket$Name
     r <- s3HTTP(verb = "GET", 
                 bucket = bucket,
@@ -242,7 +243,7 @@ get_replication <- function(bucket, ...){
 
 #' @title Get the tag set for a bucket.
 #'
-#' @param bucket Character string with the name of the bucket.
+#' @param bucket A character string containing the name of the bucket, or an object of class \dQuote{s3_bucket}.
 #' @param ... Additional arguments passed to \code{\link{s3HTTP}}.
 #'
 #' @return A list containing the tag set, if one has been set.
@@ -252,7 +253,7 @@ get_replication <- function(bucket, ...){
 #' @export
 
 get_tagging <- function(bucket, ...){
-    if (inherits(bucket, "s3bucket"))
+    if (inherits(bucket, "s3_bucket"))
         bucket <- bucket$Name
     r <- s3HTTP(verb = "GET", 
                 bucket = bucket,
@@ -268,7 +269,7 @@ get_tagging <- function(bucket, ...){
 
 #' @title Get versions of bucket objects.
 #'
-#' @param bucket Character string with the name of the bucket.
+#' @param bucket A character string containing the name of the bucket, or an object of class \dQuote{s3_bucket}.
 #' @param ... Additional arguments passed to \code{\link{s3HTTP}}.
 #'
 #' @return A list.
@@ -278,7 +279,7 @@ get_tagging <- function(bucket, ...){
 #' @export
 
 get_versions <- function(bucket, ...){
-    if (inherits(bucket, "s3bucket"))
+    if (inherits(bucket, "s3_bucket"))
         bucket <- bucket$Name
     r <- s3HTTP(verb = "GET", 
                 bucket = bucket,
@@ -293,7 +294,7 @@ get_versions <- function(bucket, ...){
 
 #' @title Get the versioning status of a bucket.
 #'
-#' @param bucket Character string with the name of the bucket.
+#' @param bucket A character string containing the name of the bucket, or an object of class \dQuote{s3_bucket}.
 #' @param ... Additional arguments passed to \code{\link{s3HTTP}}.
 #'
 #' @return If versioning has never been enabled or suspend, the value is \code{NULL}.
@@ -304,7 +305,7 @@ get_versions <- function(bucket, ...){
 #' @export
 
 get_versioning <- function(bucket, ...){
-    if (inherits(bucket, "s3bucket"))
+    if (inherits(bucket, "s3_bucket"))
         bucket <- bucket$Name
     r <- s3HTTP(verb = "GET", 
                 bucket = bucket,
@@ -324,7 +325,7 @@ get_versioning <- function(bucket, ...){
 
 #' @title Get the website configuration for a bucket.
 #'
-#' @param bucket Character string with the name of the bucket.
+#' @param bucket A character string containing the name of the bucket, or an object of class \dQuote{s3_bucket}.
 #' @param ... Additional arguments passed to \code{\link{s3HTTP}}.
 #'
 #' @return A list containing the website configuration, if one has been set.
@@ -334,7 +335,7 @@ get_versioning <- function(bucket, ...){
 #' @export
 
 get_website <- function(bucket, ...){
-    if (inherits(bucket, "s3bucket"))
+    if (inherits(bucket, "s3_bucket"))
         bucket <- bucket$Name
     r <- s3HTTP(verb = "GET", 
                 bucket = bucket,
@@ -349,7 +350,7 @@ get_website <- function(bucket, ...){
 
 #' @title Get a list of multipart uploads for a bucket.
 #'
-#' @param bucket Character string with the name of the bucket.
+#' @param bucket A character string containing the name of the bucket, or an object of class \dQuote{s3_bucket}.
 #' @param ... Additional arguments passed to \code{\link{s3HTTP}}.
 #'
 #' @return A list containing the multipart upload information.
@@ -359,7 +360,7 @@ get_website <- function(bucket, ...){
 #' @export
 
 get_uploads <- function(bucket, ...){
-    if (inherits(bucket, "s3bucket"))
+    if (inherits(bucket, "s3_bucket"))
         bucket <- bucket$Name
     r <- s3HTTP(verb = "GET", 
                 bucket = bucket,
@@ -374,7 +375,7 @@ get_uploads <- function(bucket, ...){
 
 #' @title Get the requestPayment subresource for a bucket.
 #'
-#' @param bucket Character string with the name of the bucket.
+#' @param bucket A character string containing the name of the bucket, or an object of class \dQuote{s3_bucket}.
 #' @param ... Additional arguments passed to \code{\link{s3HTTP}}.
 #'
 #' @return A list containing the requestPayment information, if set.
@@ -384,7 +385,7 @@ get_uploads <- function(bucket, ...){
 #' @export
 
 get_requestpayment <- function(bucket, ...){
-    if (inherits(bucket, "s3bucket"))
+    if (inherits(bucket, "s3_bucket"))
         bucket <- bucket$Name
     r <- s3HTTP(verb = "GET", 
                 bucket = bucket,
@@ -400,7 +401,7 @@ get_requestpayment <- function(bucket, ...){
 
 #' @title Deletes an S3 bucket.
 #'
-#' @param bucket Character string with the name of the bucket.
+#' @param bucket A character string containing the name of the bucket, or an object of class \dQuote{s3_bucket}.
 #' @param ... Additional arguments passed to \code{\link{s3HTTP}}.
 #'
 #' @return \code{TRUE} if successful, \code{FALSE} otherwise. 
@@ -411,7 +412,7 @@ get_requestpayment <- function(bucket, ...){
 #' @export
 
 deletebucket <- function(bucket, ...){
-    if (inherits(bucket, "s3bucket"))
+    if (inherits(bucket, "s3_bucket"))
       bucket <- bucket$Name
     r <- s3HTTP(verb = "DELETE", 
                 bucket = bucket,
@@ -426,7 +427,7 @@ deletebucket <- function(bucket, ...){
 
 #' @title Delete the cross origin resource sharing configuration information for a bucket.
 #'
-#' @param bucket Character string with the name of the bucket.
+#' @param bucket A character string containing the name of the bucket, or an object of class \dQuote{s3_bucket}.
 #' @param ... Additional arguments passed to \code{\link{s3HTTP}}.
 #'
 #' @return \code{TRUE} if successful, \code{FALSE} otherwise.
@@ -436,7 +437,7 @@ deletebucket <- function(bucket, ...){
 #' @export
 
 delete_cors <- function(bucket, ...){
-    if (inherits(bucket, "s3bucket"))
+    if (inherits(bucket, "s3_bucket"))
         bucket <- bucket$Name
     r <- s3HTTP(verb = "DELETE", 
                 bucket = bucket,
@@ -453,7 +454,7 @@ delete_cors <- function(bucket, ...){
 
 #' @title Delete the lifecycle configuration information for a bucket.
 #'
-#' @param bucket Character string with the name of the bucket.
+#' @param bucket A character string containing the name of the bucket, or an object of class \dQuote{s3_bucket}.
 #' @param ... Additional arguments passed to \code{\link{s3HTTP}}.
 #'
 #' @return \code{TRUE} if successful, \code{FALSE} otherwise.
@@ -464,7 +465,7 @@ delete_cors <- function(bucket, ...){
 #' @export
 
 delete_lifecycle <- function(bucket, ...){
-    if (inherits(bucket, "s3bucket"))
+    if (inherits(bucket, "s3_bucket"))
         bucket <- bucket$Name
     r <- s3HTTP(verb = "DELETE", 
                 bucket = bucket,
@@ -481,7 +482,7 @@ delete_lifecycle <- function(bucket, ...){
 
 #' @title Delete the bucket access policy for a bucket.
 #'
-#' @param bucket Character string with the name of the bucket.
+#' @param bucket A character string containing the name of the bucket, or an object of class \dQuote{s3_bucket}.
 #' @param ... Additional arguments passed to \code{\link{s3HTTP}}.
 #'
 #' @return \code{TRUE} if successful, \code{FALSE} otherwise.
@@ -492,7 +493,7 @@ delete_lifecycle <- function(bucket, ...){
 #' @export
 
 delete_policy <- function(bucket, ...){
-    if (inherits(bucket, "s3bucket"))
+    if (inherits(bucket, "s3_bucket"))
         bucket <- bucket$Name
     r <- s3HTTP(verb = "DELETE", 
                 bucket = bucket,
@@ -508,7 +509,7 @@ delete_policy <- function(bucket, ...){
 
 #' @title Delete the replication policy for a bucket.
 #'
-#' @param bucket Character string with the name of the bucket.
+#' @param bucket A character string containing the name of the bucket, or an object of class \dQuote{s3_bucket}.
 #' @param ... Additional arguments passed to \code{\link{s3HTTP}}.
 #'
 #' @return \code{TRUE} if successful, \code{FALSE} otherwise.
@@ -519,7 +520,7 @@ delete_policy <- function(bucket, ...){
 #' @export
 
 delete_replication <- function(bucket, ...){
-    if (inherits(bucket, "s3bucket"))
+    if (inherits(bucket, "s3_bucket"))
         bucket <- bucket$Name
     r <- s3HTTP(verb = "DELETE", 
                 bucket = bucket,
@@ -535,7 +536,7 @@ delete_replication <- function(bucket, ...){
 
 #' @title Delete the tag set for a bucket.
 #'
-#' @param bucket Character string with the name of the bucket.
+#' @param bucket A character string containing the name of the bucket, or an object of class \dQuote{s3_bucket}.
 #' @param ... Additional arguments passed to \code{\link{s3HTTP}}.
 #'
 #' @return \code{TRUE} if successful, \code{FALSE} otherwise.
@@ -546,7 +547,7 @@ delete_replication <- function(bucket, ...){
 #' @export
 
 delete_tagging <- function(bucket, ...){
-    if (inherits(bucket, "s3bucket"))
+    if (inherits(bucket, "s3_bucket"))
         bucket <- bucket$Name
     r <- s3HTTP(verb = "DELETE", 
                 bucket = bucket,
@@ -563,7 +564,7 @@ delete_tagging <- function(bucket, ...){
 
 #' @title Delete the website configuration for a bucket.
 #'
-#' @param bucket Character string with the name of the bucket.
+#' @param bucket A character string containing the name of the bucket, or an object of class \dQuote{s3_bucket}.
 #' @param ... Additional arguments passed to \code{\link{s3HTTP}}.
 #'
 #' @return \code{TRUE} if successful, \code{FALSE} otherwise.
@@ -574,7 +575,7 @@ delete_tagging <- function(bucket, ...){
 #' @export
 
 delete_website <- function(bucket, ...){
-    if (inherits(bucket, "s3bucket"))
+    if (inherits(bucket, "s3_bucket"))
         bucket <- bucket$Name
     r <- s3HTTP(verb = "DELETE", 
                 bucket = bucket,
@@ -591,7 +592,7 @@ delete_website <- function(bucket, ...){
 
 #' @title Check whether a bucket exists and is accessible with the current authentication keys.
 #'
-#' @param bucket Character string with the name of the bucket.
+#' @param bucket A character string containing the name of the bucket, or an object of class \dQuote{s3_bucket}.
 #' @param ... Additional arguments passed to \code{\link{s3HTTP}}.
 #'
 #' @return \code{TRUE} if bucket exists and is accessible, else \code{FALSE}.
@@ -602,7 +603,7 @@ delete_website <- function(bucket, ...){
 #' @export
 
 bucketexists <- function(bucket, ...){
-    if (inherits(bucket, "s3bucket"))
+    if (inherits(bucket, "s3_bucket"))
         bucket <- bucket$Name
     r <- s3HTTP(verb = "HEAD", 
                 bucket = bucket,
@@ -617,7 +618,7 @@ bucketexists <- function(bucket, ...){
 
 #' @title Creates a new S3 bucket.
 #'
-#' @param bucket Character string with the name of the bucket you want to create.
+#' @param bucket A character string containing the name of the bucket, or an object of class \dQuote{s3_bucket}.
 #' @param ... Additional arguments passed to \code{\link{s3HTTP}}.
 #'
 #' @return \code{TRUE} if successful, aws_error details if not.
@@ -627,7 +628,7 @@ bucketexists <- function(bucket, ...){
 #' @export
 
 putbucket <- function(bucket, ...){
-    if (inherits(bucket, "s3bucket"))
+    if (inherits(bucket, "s3_bucket"))
         bucket <- bucket$Name
     r <- s3HTTP(verb = "PUT", 
                 bucket = bucket,
@@ -643,7 +644,7 @@ putbucket <- function(bucket, ...){
 # put_acl listed in OBJECT.r
 
 put_cors <- function(bucket, ...){
-    if (inherits(bucket, "s3bucket"))
+    if (inherits(bucket, "s3_bucket"))
         bucket <- bucket$Name
     r <- s3HTTP(verb = "PUT", 
                 bucket = bucket,
@@ -657,7 +658,7 @@ put_cors <- function(bucket, ...){
 }
 
 put_lifecycle <- function(bucket, ...){
-    if (inherits(bucket, "s3bucket"))
+    if (inherits(bucket, "s3_bucket"))
         bucket <- bucket$Name
     r <- s3HTTP(verb = "PUT", 
                 bucket = bucket,
@@ -671,7 +672,7 @@ put_lifecycle <- function(bucket, ...){
 }
 
 put_policy <- function(bucket, ...){
-    if (inherits(bucket, "s3bucket"))
+    if (inherits(bucket, "s3_bucket"))
         bucket <- bucket$Name
     r <- s3HTTP(verb = "PUT", 
                 bucket = bucket,
@@ -685,7 +686,7 @@ put_policy <- function(bucket, ...){
 }
 
 put_logging <- function(bucket, ...){
-    if (inherits(bucket, "s3bucket"))
+    if (inherits(bucket, "s3_bucket"))
         bucket <- bucket$Name
     r <- s3HTTP(verb = "PUT", 
                 bucket = bucket,
@@ -699,7 +700,7 @@ put_logging <- function(bucket, ...){
 }
 
 put_notification <- function(bucket, ...){
-    if (inherits(bucket, "s3bucket"))
+    if (inherits(bucket, "s3_bucket"))
         bucket <- bucket$Name
     r <- s3HTTP(verb = "PUT", 
                 bucket = bucket,
@@ -713,7 +714,7 @@ put_notification <- function(bucket, ...){
 }
 
 put_tagging <- function(bucket, ...){
-    if (inherits(bucket, "s3bucket"))
+    if (inherits(bucket, "s3_bucket"))
         bucket <- bucket$Name
     r <- s3HTTP(verb = "PUT", 
                 bucket = bucket,
@@ -728,7 +729,7 @@ put_tagging <- function(bucket, ...){
 
 #' @title Set the versioning status of a bucket.
 #'
-#' @param bucket Character string with the name of the bucket.
+#' @param bucket A character string containing the name of the bucket, or an object of class \dQuote{s3_bucket}.
 #' @param status Character string specifying whether versioning should be
 #' \dQuote{Enabled} or \dQuote{Suspended}.
 #' @param ... Additional arguments passed to \code{\link{s3HTTP}}.
@@ -741,7 +742,7 @@ put_tagging <- function(bucket, ...){
 #' @export
 
 put_versioning <- function(bucket, status = c("Enabled", "Suspended"), ...){
-    if (inherits(bucket, "s3bucket"))
+    if (inherits(bucket, "s3_bucket"))
         bucket <- bucket$Name
     b <- paste0(
 '<VersioningConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/"> 
@@ -765,7 +766,7 @@ put_versioning <- function(bucket, status = c("Enabled", "Suspended"), ...){
 }
 
 put_website <- function(bucket, ...){
-    if (inherits(bucket, "s3bucket"))
+    if (inherits(bucket, "s3_bucket"))
         bucket <- bucket$Name
     r <- s3HTTP(verb = "PUT", 
                 bucket = bucket,
@@ -779,7 +780,7 @@ put_website <- function(bucket, ...){
 }
 
 put_requestpayment <- function(bucket, ...){
-    if (inherits(bucket, "s3bucket"))
+    if (inherits(bucket, "s3_bucket"))
         bucket <- bucket$Name
     r <- s3HTTP(verb = "PUT", 
                 bucket = bucket,

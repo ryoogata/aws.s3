@@ -8,13 +8,13 @@ copyobject(from_object, to_object = from_object, from_bucket, to_bucket,
   headers = list(), ...)
 }
 \arguments{
-\item{from_object}{A character string containing the name the object you want to copy.}
+\item{from_object}{A character string containing the name of an object, or an object of class \dQuote{s3_object}, which you want to copy.}
 
-\item{to_object}{A character string containing the name the object should have in the new bucket.}
+\item{to_object}{A character string containing the name of an object, or an object of class \dQuote{s3_object}, which specifies the name the object should have in the new bucket. By default, the object key for the original object is used.}
 
-\item{from_bucket}{A character string containing the name of the bucket you want to copy from.}
+\item{from_bucket}{A character string containing the name of the bucket, or an object of class \dQuote{s3_bucket}, which you want to copy from.}
 
-\item{to_bucket}{A character string containing the name of the bucket you want to copy into.}
+\item{to_bucket}{A character string containing the name of the bucket, or an object of class \dQuote{s3_bucket}, which you want to copy into.}
 
 \item{headers}{List of request headers for the REST call.}
 

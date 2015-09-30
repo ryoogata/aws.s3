@@ -7,10 +7,9 @@
 deleteobject(bucket, object, ...)
 }
 \arguments{
-\item{bucket}{A character string containing the name of the bucket you want
-to delete an object from.}
+\item{bucket}{A character string containing the name of the bucket, or an object of class \dQuote{s3_bucket}.}
 
-\item{object}{A character string containing the name of the object.}
+\item{object}{A character string containing the name of an object, or an object of class \dQuote{s3_object}.}
 
 \item{...}{Additional arguments passed to \code{\link{s3HTTP}}}
 }

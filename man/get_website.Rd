@@ -7,7 +7,7 @@
 get_website(bucket, ...)
 }
 \arguments{
-\item{bucket}{Character string with the name of the bucket.}
+\item{bucket}{A character string containing the name of the bucket, or an object of class \dQuote{s3_bucket}.}
 
 \item{...}{Additional arguments passed to \code{\link{s3HTTP}}.}
 }

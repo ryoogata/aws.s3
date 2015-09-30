@@ -10,10 +10,9 @@ putobject(file, bucket, object, headers = list(), ...)
 \item{file}{A character string containing the filename (or full path) of
 the file you want to upload to S3.}
 
-\item{bucket}{A character string containing the name of the bucket you want
-to put an object into.}
+\item{bucket}{A character string containing the name of the bucket, or an object of class \dQuote{s3_bucket}.}
 
-\item{object}{A character string containing the name the object should
+\item{object}{A character string containing the name of an object, or an object of class \dQuote{s3_object}.
 have in S3 (i.e., its "object key"). If missing, the filename is used.}
 
 \item{headers}{List of request headers for the REST call.}
