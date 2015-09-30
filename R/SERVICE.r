@@ -1,6 +1,6 @@
 #' @title List buckets for authenticated user
 #'
-#' @description bucketlist performs a GET operation on the base s3 endpoint 
+#' @description \code{bucketlist} performs a GET operation on the base s3 endpoint 
 #' and returns a list of all buckets owned by the authenticated 
 #' sender of the request.
 #' 

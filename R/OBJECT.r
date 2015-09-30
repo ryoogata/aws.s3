@@ -10,7 +10,6 @@
 #' @keywords object
 #' @examples \dontrun{}
 #' @export
-# FIXME consider saving the object to a file?  
 getobject <- function(bucket, object, headers = list(), ...) {
     if (inherits(object, "s3_object"))
         object <- object$Key
@@ -36,6 +35,36 @@ print.s3_object <- function(x, ...){
     invisible(x)
 }
 
+#' @title Write an object locally 
+#' 
+#' @description Download an S3 object and save it locally
+#'
+#' @details This function is identical to \code{\link{getobject}}, except
+#' in addition to returning the object as a raw vector within R, this function
+#' writes the object to a connection, as specified by the \code{con} argument.
+#'
+#' @param bucket Character string with the name of the bucket.
+#' @param object Character string of the name of the object you want to get.
+#' @param con An R connection (e.g., a character string specifying a file path).
+#' @param headers List of request headers for the REST call.
+#' @param ... Additional arguments passed to \code{\link{s3HTTP}}.
+#'
+#' @return A raw object, invisibly.
+#' @keywords object
+#' @examples \dontrun{}
+#' @export
+write_object <- function(bucket, object, con, headers = list(), ...) {
+    if (inherits(object, "s3_object"))
+        object <- object$Key
+
+    r <- getobject(bucket = bucket, object = object, headers = headers, ...)
+    writeBin(r, con = con)
+    if (inherits(r, "aws_error")) {
+        return(r)
+    } else {
+        invisible(r)
+    }
+}
 
 get_acl <- function(bucket, object, ...) {
     if (missing(object)) {
