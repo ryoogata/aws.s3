@@ -5,18 +5,23 @@
 ## Installation ##
 
 [![CRAN](http://www.r-pkg.org/badges/version/aws.s3)](http://cran.r-project.org/package=aws.s3)
-[![Build Status](https://travis-ci.org/cloudyr/aws.s3.png?branch=master)](https://travis-ci.org/cloudyr/aws.s3) [![codecov.io](http://codecov.io/github/cloudyr/aws.s3/coverage.svg?branch=master)](http://codecov.io/github/cloudyr/aws.s3?branch=master)
+[![Build Status](https://travis-ci.org/cloudyr/aws.s3.png?branch=master)](https://travis-ci.org/cloudyr/aws.s3)
+[![codecov.io](http://codecov.io/github/cloudyr/aws.s3/coverage.svg?branch=master)](http://codecov.io/github/cloudyr/aws.s3?branch=master)
 
-
-This package is not yet on CRAN. To install the latest development version from GitHub, run the following:
+This package is not yet on CRAN. To install the latest stable version from GitHub, run the following:
 
 ```R
-if(!require("devtools")){
-    install.packages("devtools")
-    library("devtools")
+install.packages("aws.s3", repos = c(getOptions("repos"), "http://cloudyr.github.io/drat"))
+```
+
+or first add [the cloudyr drat repository](https://github.com/cloudyr/cloudyr.github.io/tree/master/drat/src/contrib) to your default repositories so you can install packages without the complicated argument above:
+
+```R
+if (!require("drat")) {
+    install.packages("drat")
 }
-install_github("cloudyr/aws.signature")
-install_github("cloudyr/aws.s3")
+drat::addRepo("cloudyr", "http://cloudyr.github.io/drat")
+install.packages("aws.s3")
 ```
 
 ## Code Examples ##
