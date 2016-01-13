@@ -35,7 +35,7 @@ s3load <- function(bucket, object, opts, envir = parent.frame()) {
         return(r)
     } else {
         writeBin(httr::content(r, "raw"), con = tmp)
-        source(tmp, envir = envir)
+        source(tmp)
         return(invisible())
     }
 }
